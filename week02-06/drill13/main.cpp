@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+
+//g++ -w -Wall -std=c++11 ../GUI/Graph.cpp ../GIU/Window.cpp ../GUI/Simple_window.cpp main.cpp `fltk-config -ldflags --use-images` -o main.out
 
 using namespace Graph_lib;
 
@@ -27,11 +30,26 @@ int main(){
         win.wait_for_button();
 
         //F3
-        Rectangle diagonal[8];
+        /*Rectangle diagonal[8];
         for(int i = 0; i < 8; i++){
             diagonal[i] {Point[i*100, i*100], 100, 100};
             diagonal[i].set_fill_color(Color::red);
+        }*/
+
+        vector<Rectangle> diagonal;
+        for(int i = 0; i < 8; i++){
+            diagonal.push_back(new Rectangle {Point[i*100, i*100], 100, 100});
+            diagonal[i].set_fill_color(Color::red);
         }
+        /*
+            set_mask
+            img.set_mask
+        */
+
+        /*
+            img.move
+        */
+    
 
     } catch(exception& e){
         cerr << "exception: " << e.what() << endl;
