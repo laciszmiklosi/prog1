@@ -30,26 +30,44 @@ int main(){
         win.wait_for_button();
 
         //F3
-        /*Rectangle diagonal[8];
-        for(int i = 0; i < 8; i++){
-            diagonal[i] {Point[i*100, i*100], 100, 100};
-            diagonal[i].set_fill_color(Color::red);
-        }*/
-
         vector<Rectangle> diagonal;
         for(int i = 0; i < 8; i++){
-            diagonal.push_back(new Rectangle {Point[i*100, i*100], 100, 100});
+            diagonal.push_back(new Rectangle {Point{i*100, i*100}, 100, 100});
             diagonal[i].set_fill_color(Color::red);
+            diagonal[i].set_color(Color::invisible);
+            win.attach(diagonal[i]);
         }
-        /*
-            set_mask
-            img.set_mask
-        */
 
-        /*
-            img.move
-        */
-    
+        win.wait_for_button();
+
+        //F4
+        Image i1 {Point{0, 0}, "../GUI/badge.jpg"};
+        i1.set_mask(Point{0, 200}, 200, 200);
+        Image i2 {Point{0, 0}, "../GUI/badge.jpg"};
+        i2.set_mask(Point{400, 0}, 200, 200);
+        Image i3 {Point{0, 0}, "../GUI/badge.jpg"};
+        i3.set_mask(Point{600, 300}, 200, 200);
+        win.attach(i1);
+        win.attach(i2);
+        win.attach(i3);
+
+        win.wait_for_button();
+
+        //F5
+        int x, y;
+        Image i4 {Point{0, 0}, "../GUI/badge.jpg"};
+        i3.set_mask(Point{100, 100}, 100, 100);
+        win.attach(i4);
+
+        win.wait_for_button();  
+
+        while(true){
+            x = rand() % 8;
+            y = rand() % 8;
+
+            i4.move(x*100, y*100);
+            win.wait_for_button();
+        }
 
     } catch(exception& e){
         cerr << "exception: " << e.what() << endl;
