@@ -40,11 +40,49 @@ void remove_by_name(C& c, std::string name){
     }
 }
 
+template<typename C>
+void remove_by_iid(C& c, int iid){
+    std::cout << "remove " << iid << " from container\n";
+
+    int index = 0;
+    for(const auto elem : c){
+        if(elem.iid == iid)
+        {
+            c.erase(c.begin() + index);
+            break;
+        }
+        
+        index++;
+    }
+}
+
+void remove_by_namel(std::list<Item>& c, std::string name){
+    std::cout << "remove " << name << " from container\n";
+
+    for (std::list<Item>::iterator it = c.begin(); it != c.end(); ++it){
+        if(name == it->name){
+            c.erase(it);
+            break;
+        }
+            
+    }    
+}
+
+void remove_by_iidl(std::list<Item>& c, int iid){
+    std::cout << "remove " << iid << " from container\n";
+
+    for (std::list<Item>::iterator it = c.begin(); it != c.end(); ++it){
+        if(iid == it->iid){
+            c.erase(it);
+            break;
+        }
+            
+    }    
+}
+
 std::ostream& operator<<(std::ostream& os, const Item& it)
 {
-    return os << it.name << '\t'
-              << it.iid << '\t'
-              << it.value;
+    return os << it.name << '\t' << it.iid << '\t' << it.value;
 }
 
 std::istream& operator>>(std::istream& is, Item& it)
@@ -118,7 +156,14 @@ int main(){
     li.insert(li.end(), i);
     print(li);
 
-    // Utolsó két feladat hiányzik
+
+    remove_by_namel(li, "kapa");
+    remove_by_namel(li, "vonat");
+    print(li);
+
+    remove_by_iidl(li, 1);
+    remove_by_iidl(li, 21);
+    print(li);
 
 
     } catch(std::exception& e){
