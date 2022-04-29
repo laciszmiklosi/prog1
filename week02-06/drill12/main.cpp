@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+//g++ -std=c++11 ../GUI/Graph.cpp ../GUI/Window.cpp ../GUI/GUI.cpp ../GUI/Simple_window.cpp main.cpp `fltk-config --ldflags --use-images` -o main.out
+
 using namespace Graph_lib;
 
 int main(){
@@ -36,13 +38,13 @@ int main(){
         win.wait_for_button();
 
 
-        Poligon poly;
+        Polygon poly;
         poly.add(Point{300, 200});
         poly.add(Point{350, 100});
         poly.add(Point{400, 200});
 
         poly.set_color(Color::green);
-        poly.set_style(Line_style::desh);
+        poly.set_style(Line_style::dash);
         win.attach(poly);
 
         win.set_label("triangle");
@@ -58,7 +60,7 @@ int main(){
         poly_rect.add(Point{200, 100});
         poly_rect.add(Point{100, 100});
         poly_rect.add(Point{50, 75});
-        win.attach(Closed_polyline);
+        win.attach(poly_rect);
 
         win.set_label("rectangle");
         win.wait_for_button();
@@ -82,7 +84,7 @@ int main(){
         win.wait_for_button();
 
 
-        Image ii {Point{100,70), "../GUI/badge.jpg"}; 
+        Image ii {Point{100,70}, "../GUI/badge.jpg"}; 
         win.attach(ii);
 
         win.set_label("image");
